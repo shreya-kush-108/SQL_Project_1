@@ -1,9 +1,8 @@
 -- Q1. Calculate the average order value for different customer segments based on their total spending.
 
 SELECT AVG(payment_value) AS average_payment, CASE WHEN payment_value < 300 THEN "LOW"
-												   WHEN payment_value BETWEEN 300 AND 500 THEN "MEDIUM"
-												   ELSE "HIGH" END
-												   AS income_segment 
+						   WHEN payment_value BETWEEN 300 AND 500 THEN "MEDIUM"
+						   ELSE "HIGH" END AS income_segment 
 FROM order_payment
 GROUP BY income_segment;
 
@@ -74,9 +73,8 @@ GROUP BY customer_state;
 -- Q9. Segment customers based on their purchase frequency.
 
 SELECT COUNT(customer_id), CASE WHEN order_count = 1 THEN 'One-time'
-								WHEN order_count BETWEEN 1 AND 5 THEN 'Occasional'
-								ELSE 'Frequent' END 
-								AS purchase_frequency
+				WHEN order_count BETWEEN 1 AND 5 THEN 'Occasional'
+				ELSE 'Frequent' END AS purchase_frequency
 FROM (SELECT customer_id, COUNT(*) AS order_count
 	  FROM orders
 	  GROUP BY customer_id) AS customer_orders
@@ -114,14 +112,14 @@ WHERE order_purchase_timestamp <= now() - INTERVAL 6 YEAR;                      
 -- Q13. Calculate the customer retention rate over the past 6 years.
 
 SELECT (COUNT(DISTINCT CASE WHEN order_purchase_timestamp >= NOW() - INTERVAL 6 YEAR THEN customer_id END)
-		/COUNT(DISTINCT customer_id)) * 100 AS retention_rate
+	/COUNT(DISTINCT customer_id)) * 100 AS retention_rate
 FROM orders;
 
-																	#OR
+																 -- OR
 SELECT (SELECT COUNT(DISTINCT customer_id)
-		FROM orders
+	FROM orders
         WHERE order_purchase_timestamp >= NOW() - INTERVAL 6 YEAR)
-	 / (SELECT COUNT(DISTINCT customer_id) FROM orders) * 100
+     / (SELECT COUNT(DISTINCT customer_id) FROM orders) * 100
 AS retention_rate;
 
 
