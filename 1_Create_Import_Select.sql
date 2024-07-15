@@ -52,7 +52,7 @@ CREATE TABLE order_items
  shipping_limit_date CHAR(50),
  price FLOAT,
  freight_value FLOAT,
-PRIMARY KEY (order_id, product_id),
+PRIMARY KEY (order_id, order_item_id),
 FOREIGN KEY (order_id) REFERENCES orders(order_id),
 FOREIGN KEY (product_id) REFERENCES products(product_id),
 FOREIGN KEY (seller_id) REFERENCES sellers(seller_id));
