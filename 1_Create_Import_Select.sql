@@ -9,6 +9,41 @@ CREATE TABLE customers                                               -- Tables c
  customer_city CHAR(50),
  customer_state CHAR(50));
 
+CREATE TABLE geolocation
+(geolocation_zip_code_prefix CHAR(50),
+ geolocation_lat DOUBLE,
+ geolocation_lng DOUBLE,
+ geolocation_city CHAR(50),
+ geolocation_state CHAR(50));
+
+CREATE TABLE orders
+(order_id VARCHAR(50) PRIMARY KEY,
+ customer_id VARCHAR(50),
+ order_status CHAR(50),
+ order_purchase_timestamp CHAR(50),
+ order_approved_at CHAR(50),
+ order_delivered_carrier_date CHAR(50),
+ order_delivered_customer_date CHAR(50),
+ order_delivery_estimate_date CHAR(50),
+ FOREIGN KEY (customer_id) REFERENCES customers(customer_id));
+
+CREATE TABLE sellers
+(seller_id VARCHAR(50) PRIMARY KEY,
+ seller_zip_code_prefix CHAR(50),
+ seller_city CHAR(50),
+ seller_state CHAR(50));
+
+CREATE TABLE products
+(product_id VARCHAR(50) PRIMARY KEY,
+ product_category_name CHAR(50),
+ product_name_length CHAR(10),
+ product_description_length CHAR(10),
+ product_photos_qty CHAR(10),
+ product_weight_g CHAR(10),
+ product_lenght_cm CHAR(10),
+ product_height_cm CHAR(10),
+ product_width_cm CHAR(10));
+
 CREATE TABLE order_items
 (order_id VARCHAR(50),
  order_item_id BIGINT,
@@ -42,33 +77,7 @@ CREATE TABLE order_review
  PRIMARY KEY (review_id, order_id),
  FOREIGN KEY (order_id) REFERENCES orders(order_id));
 
-CREATE TABLE orders
-(order_id VARCHAR(50) PRIMARY KEY,
- customer_id VARCHAR(50),
- order_status CHAR(50),
- order_purchase_timestamp CHAR(50),
- order_approved_at CHAR(50),
- order_delivered_carrier_date CHAR(50),
- order_delivered_customer_date CHAR(50),
- order_delivery_estimate_date CHAR(50),
- FOREIGN KEY (customer_id) REFERENCES customers(customer_id));
 
-CREATE TABLE sellers
-(seller_id VARCHAR(50) PRIMARY KEY,
- seller_zip_code_prefix CHAR(50),
- seller_city CHAR(50),
- seller_state CHAR(50));
-
-CREATE TABLE products
-(product_id VARCHAR(50) PRIMARY KEY,
- product_category_name CHAR(50),
- product_name_length CHAR(10),
- product_description_length CHAR(10),
- product_photos_qty CHAR(10),
- product_weight_g CHAR(10),
- product_lenght_cm CHAR(10),
- product_height_cm CHAR(10),
- product_width_cm CHAR(10));
 
 SELECT * FROM customers;                                             -- All Tables can be viewed from here.
 SELECT * FROM geolocation;
@@ -79,7 +88,7 @@ SELECT * FROM orders;
 SELECT * FROM products;
 SELECT * FROM sellers;
 
-# IMPORTED BULK CSV DATA TABLES USING "LOAD DATA INFILE" COMMAND. EXAMPLE GIVEN BELOW:
+-- IMPORTED BULK CSV DATA TABLES USING THE "LOAD DATA INFILE" COMMAND. EXAMPLE GIVEN BELOW:
 
 LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/olist_geolocation_dataset.csv' INTO TABLE geolocation
 FIELDS TERMINATED BY ','
