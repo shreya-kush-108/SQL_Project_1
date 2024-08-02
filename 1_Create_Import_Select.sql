@@ -79,14 +79,6 @@ CREATE TABLE order_review
 
 
 
-SELECT * FROM customers;                                             -- All Tables can be viewed from here.
-SELECT * FROM geolocation;
-SELECT * FROM order_payment;
-SELECT * FROM order_items;
-SELECT * FROM order_review;
-SELECT * FROM orders;
-SELECT * FROM products;
-SELECT * FROM sellers;
 
 -- IMPORTED BULK CSV DATA TABLES USING THE "LOAD DATA INFILE" COMMAND. EXAMPLE GIVEN BELOW:
 
