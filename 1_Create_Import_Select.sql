@@ -90,10 +90,10 @@ SELECT * FROM sellers;
 
 -- IMPORTED BULK CSV DATA TABLES USING THE "LOAD DATA INFILE" COMMAND. EXAMPLE GIVEN BELOW:
 
-LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/olist_geolocation_dataset.csv' INTO TABLE geolocation
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-IGNORE 1 ROWS;
+-- LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/olist_geolocation_dataset.csv' INTO TABLE geolocation
+-- FIELDS TERMINATED BY ','
+-- OPTIONALLY ENCLOSED BY '"'
+-- IGNORE 1 ROWS;
 
 
 
